@@ -1,0 +1,34 @@
+/* navbar styles */
+*{
+    font-size: 18px;
+    font-weight: 450;
+}
+nav, .nav-user, .login{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    color: white;
+}
+
+nav{
+    padding: 10px 35px;
+}
+.tabs{
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.nav-user{
+    width: 220px;
+}
+.login{
+    background-color: rgba(135, 134, 134, 0.415);
+    padding: 5px 10px;
+    border-radius: 20px;
+    width: 70px;
+    margin-left: 20px;
+}
