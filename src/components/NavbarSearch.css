@@ -1,0 +1,74 @@
+/* navbar styles */
+*{
+  font-size: 18px;
+  font-weight: 450;
+}
+nav, .nav-user, .login{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  /* color: white; */
+}
+
+nav{
+  padding: 10px 35px;
+}
+.tabs{
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  
+}
+
+.nav-user{
+  width: 220px;
+}
+.login{
+  background-color: rgba(135, 134, 134, 0.415);
+  padding: 5px 10px;
+  border-radius: 20px;
+  width: 70px;
+  margin-left: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  /* width: 400px; */
+  /* height: 200px; */
+  /* background-color: white; */
+  border-radius: 50px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  /* margin-right: 10px; */
+  /* padding: 10px; */
+  color: black;
+  width: 100px;
+  flex: 1;
+  
+  padding-left:10px;
+}
+#border{
+  border-right: 1px solid grey;
+}
+.search-button {
+  background-color: #ff385c;
+  /* color: white; */
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+}

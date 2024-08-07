@@ -50,8 +50,8 @@ const InspirationGetaways = () => {
         ))}
       </div>
       <div className="destinations">
-        {destinations[selectedCategory].map(destination => (
-          <div key={destination.city} className="destination">
+        {destinations[selectedCategory].map((destination,id) => (
+          <div key={id} className="destination">
             <div className="city">{destination.city}</div>
             <div className="state">{destination.state}</div>
           </div>
