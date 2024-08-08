@@ -45,3 +45,45 @@
     background-color: #f0f0f0;
   }
   
+  .hosting-questions {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    color: #fff; /* White text for contrast */
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 1; /* Ensure overlay is behind text but above other content */
+  }
+  
+  .text-container {
+    position: relative;
+    z-index: 2; /* Ensure text is above the overlay */
+  }
+  
+  .text-line {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  
+  .ask-superhost-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff; /* Customize the button color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .ask-superhost-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  

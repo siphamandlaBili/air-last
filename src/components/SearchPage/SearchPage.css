@@ -3,7 +3,7 @@
 }
 
 .searchPage-info {
-    padding: 20px;
+    padding: 20px 20px 0 20px;
   }
   
   .searchPage-info > p {
@@ -21,3 +21,21 @@
     text-transform: inherit;
     margin: 5px;
   }
+
+  .searchPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.searchPage-results {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.searchPageBtn {
+    font-size: 14px;
+    padding: 8px 16px;
+}

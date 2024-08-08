@@ -1,6 +1,6 @@
 import React from 'react';
 import img from "../assets/Screenshot__120_-removebg-preview.png"
-import './GiftCards.css'; // Assuming you will use a separate CSS file for styling
+import './GiftCards.css'; 
 
 const GiftCards = () => {
   return (

@@ -35,8 +35,6 @@
     outline: none;
     font-size: 14px;
     color: #000000;
-    /* padding: 5px; */
-    /* width: 150px; */
   }
   
   .search-button {
@@ -54,4 +52,3 @@
   .search-button i {
     font-size: 16px;
   }
-  

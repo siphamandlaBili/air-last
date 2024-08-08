@@ -4,47 +4,56 @@ import './Footer.css';
 const Footer = () => {
   return (
     <div className="footer">
+      {/* Support section */}
       <div className="footer-section">
         <h3>Support</h3>
         <ul>
           <li>Help Center</li>
-          <li>Safety information</li>
-          <li>Cancellation options</li>
+          <li>Safety Information</li>
+          <li>Cancellation Options</li>
           <li>Our COVID-19 Response</li>
-          <li>Supporting people with disabilities</li>
-          <li>Report a neighborhood concern</li>
+          <li>Supporting People with Disabilities</li>
+          <li>Report a Neighborhood Concern</li>
         </ul>
       </div>
+      
+      {/* Community section */}
       <div className="footer-section">
         <h3>Community</h3>
         <ul>
-          <li>Airbnb.org: disaster relief housing</li>
-          <li>Support: Afghan refugees</li>
-          <li>Celebrating diversity & belonging</li>
-          <li>Combating discrimination</li>
+          <li>Airbnb.org: Disaster Relief Housing</li>
+          <li>Support: Afghan Refugees</li>
+          <li>Celebrating Diversity & Belonging</li>
+          <li>Combating Discrimination</li>
         </ul>
       </div>
+      
+      {/* Hosting section */}
       <div className="footer-section">
         <h3>Hosting</h3>
         <ul>
-          <li>Try hosting</li>
-          <li>AirCover: protection for Hosts</li>
-          <li>Explore hosting resources</li>
-          <li>Visit our community forum</li>
-          <li>How to host responsibly</li>
+          <li>Try Hosting</li>
+          <li>AirCover: Protection for Hosts</li>
+          <li>Explore Hosting Resources</li>
+          <li>Visit Our Community Forum</li>
+          <li>How to Host Responsibly</li>
         </ul>
       </div>
+      
+      {/* About section */}
       <div className="footer-section">
         <h3>About</h3>
         <ul>
           <li>Newsroom</li>
-          <li>Learn about new features</li>
-          <li>Letter from our founders</li>
+          <li>Learn About New Features</li>
+          <li>Letter from Our Founders</li>
           <li>Careers</li>
           <li>Investors</li>
           <li>Airbnb Luxe</li>
         </ul>
       </div>
+      
+      {/* Footer bottom */}
       <div className="footer-bottom">
         <div>&copy; 2022 Airbnb, Inc.</div>
         <div className="footer-links">
