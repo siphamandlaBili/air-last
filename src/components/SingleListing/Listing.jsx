@@ -3,15 +3,8 @@ import { GrFavorite } from "react-icons/gr";
 import { FaStar } from "react-icons/fa";
 import "./listing.css";
 
-const SearchResult = ({
-  img,
-  location,
-  title,
-  description,
-  star,
-  price,
-  total,
-}) => {
+const SearchResult = ({img,location,title,description,star,price,total,}) => {
+  
   return (
     <div className="searchResult">
       <img src={img} alt="" />

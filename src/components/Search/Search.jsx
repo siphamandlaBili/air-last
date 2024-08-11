@@ -27,7 +27,7 @@ const Search = () => {
                 </div>
                 <div className="search-field">
                     <label htmlFor="guests">Guests</label>
-                    <input type="text" id="guests" aria-label="Number of guests" placeholder="Add guests" />
+                    <input type="number" id="guests" aria-label="Number of guests" placeholder="Add guests" />
                 </div>
                 <button type="submit" className="search-button">
                     <IoSearchSharp aria-label="Search" />

@@ -2,7 +2,10 @@ import { GrLanguage } from "react-icons/gr";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 import "./navbar.css"
+import { NavLink,useRouteError } from "react-router-dom";
 function Navbar() {
+  const error = useRouteError();
+  console.log(error);
   return (
     <nav >
       {/* logo */}
@@ -17,7 +20,7 @@ function Navbar() {
             Experiences
         </span>
         <span>
-            Online Experiences
+          <NavLink to="/trip-advisor"> Online Experiences</NavLink>
         </span>
        </div>
       

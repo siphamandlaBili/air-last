@@ -23,7 +23,7 @@ const Discover = () => {
           <img src="https://th.bing.com/th/id/OIP.gO3Yl8pqRDLj6K2cTkEAPAHaF7?w=1280&h=1024&rs=1&pid=ImgDetMain" alt="Things to do from home" />
           <div className="option-text">
             <h2>Things to do<br/> from home</h2>
-            <button>Online Experiences</button>
+            <button> Online Experiences</button>
           </div>
         </div>
       </div>
