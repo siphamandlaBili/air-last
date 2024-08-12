@@ -2,10 +2,14 @@
 import { GrFavorite } from "react-icons/gr";
 import { FaStar } from "react-icons/fa";
 import "./listing.css";
+import { Link } from "react-router-dom";
 
 const SearchResult = ({img,location,title,description,star,price,total,}) => {
-  
+  const handleMe =(e)=>{
+    console.log(location)
+  }
   return (
+      <Link to={`/listings/${location}`} onClick={handleMe}>
     <div className="searchResult">
       <img src={img} alt="" />
       <GrFavorite className="searchResult_heart" />
@@ -32,6 +36,7 @@ const SearchResult = ({img,location,title,description,star,price,total,}) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 

@@ -8,7 +8,7 @@ import InspirationGetaways from "../InspirationGateway/InspirationGetaways";
 import Navbar from "../Navbar/homeNav/Navbar"
 import NextTrip from '../NextTrip/NextTrip';
 import Search from "../Search/Search"
-import "./Home.css"
+import "./Home.css";
 
 const Home = () => {
   return (
