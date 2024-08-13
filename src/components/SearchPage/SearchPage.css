@@ -3,8 +3,8 @@
 }
 
 .searchPage-info {
-    padding: 20px 20px 0 20px;
-  }
+  padding: 20px 20px 0 100px;
+}
   
   .searchPage-info > p {
     margin-bottom: 10px;
@@ -29,10 +29,11 @@
 }
 
 .searchPage-results {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  padding: 20px;
+  padding-left: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .searchPageBtn {

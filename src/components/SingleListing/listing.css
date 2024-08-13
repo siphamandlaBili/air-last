@@ -1,13 +1,14 @@
 .searchResult {
     display: flex;
     position: relative;
-    padding: 20px;
-    border-bottom: 1px solid lightgray;
     cursor: pointer;
-  }
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    }
   
   .searchResult:hover {
-    opacity: 0.8;
+    background-color: #77777737;
   }
   
   .searchResult > img {
@@ -79,15 +80,6 @@
     color: gray;
     font-size: 15px;
   }
-
-  .searchResult {
-    display: flex;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    position: relative;
-  }
   
   .searchResult_image {
     position: relative;
@@ -105,7 +97,6 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    /* color: red; */
     cursor: pointer;
     font-size: 24px;
   }
@@ -178,4 +169,5 @@
     font-size: 14px;
     color: #777;
   }
+  
   

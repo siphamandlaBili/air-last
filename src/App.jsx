@@ -4,6 +4,7 @@ import SearchPage from "../src/components/SearchPage/SearchPage"
 import Error from './components/ErrorPage/Error';
 import AiDestinationInfo from './components/AIdestination/AiDestinationInfo';
 
+{/* <ListingDetail/> single listing details */}
 const router = createBrowserRouter([
   {
     path:"/",
