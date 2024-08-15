@@ -3,6 +3,7 @@ import Home from "../src/components/Home/Home"
 import SearchPage from "../src/components/SearchPage/SearchPage"
 import Error from './components/ErrorPage/Error';
 import AiDestinationInfo from './components/AIdestination/AiDestinationInfo';
+import ListingDetail from './components/listingDetails/ListingDetail';
 
 {/* <ListingDetail/> single listing details */}
 const router = createBrowserRouter([
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
     errorElement:<Error/>,
   },{
     path:"listings",
-    element:<SearchPage/>
+    element:<ListingDetail/>
   },
   {
     path:"trip-advisor",

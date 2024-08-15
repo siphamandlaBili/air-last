@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 import './ListingDetail.css';
 import NavbarSearch from '../Navbar/SearchListingNav/NavbarSearch';
-import { TbLeaf } from "react-icons/tb";
-import { FaKitchenSet, FaWifi } from "react-icons/fa6";
+import { TbLeaf, TbShieldCancel } from "react-icons/tb";
+import { FaKitchenSet, FaVirusCovid, FaWifi } from "react-icons/fa6";
 import { TbWashMachine } from "react-icons/tb";
 import { TbAirConditioning } from "react-icons/tb";
-import { LuRefrigerator } from 'react-icons/lu';
-import { MdOutlinePets } from 'react-icons/md';
+import { LuPartyPopper, LuRefrigerator } from 'react-icons/lu';
+import { MdFreeCancellation, MdOutlineChildFriendly, MdOutlinePets } from 'react-icons/md';
 import { PiSecurityCameraDuotone } from 'react-icons/pi';
 import { IoMdBicycle } from 'react-icons/io';
 import { AiOutlineFire } from 'react-icons/ai';
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
-import { BsCalendar2Date } from 'react-icons/bs';
+import { BsCalendar2Date, BsHouseCheck, BsStars } from 'react-icons/bs';
+import { CiClock2, CiHome } from 'react-icons/ci';
+import { VscSparkle } from 'react-icons/vsc';
+import { RiAlarmWarningFill, RiBankCardFill, RiDoorLockBoxLine } from 'react-icons/ri';
+import { LiaSmokingBanSolid } from 'react-icons/lia';
+import { GiSmokeBomb } from 'react-icons/gi';
+import Footer from '../Footer/Footer';
 const ListingDetail = () => {
-
+//    start and end date
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-
+// selection range to select dates inbetween startDate and endDate
     const selectionRange = {
         startDate: startDate,
         endDate: endDate,
@@ -29,7 +35,14 @@ const ListingDetail = () => {
         setStartDate(ranges.selection.startDate);
         setEndDate(ranges.selection.endDate);
     };
+// calculates nights spant
+    const calculateNights = (start, end) => {
+        const diffTime = Math.abs(end - start);
+        return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    };
 
+    const nights = calculateNights(startDate , endDate);
+// reviews
     const reviews = [
         {
             name: 'Jose',
@@ -71,7 +84,7 @@ const ListingDetail = () => {
             <NavbarSearch />
             <div className="container">
                 {/* Header Section */}
-                <div className="header">
+                <section className="header">
                     <h1>Bordeaux Getaway</h1>
                     <div className="rating">
                         <span>⭐ 5.0</span>
@@ -79,9 +92,10 @@ const ListingDetail = () => {
                         <span> · Superhost</span>
                         <a href="#"> · Bordeaux, France</a>
                     </div>
-                </div>
+                </section>
 
                 {/* Gallery Section */}
+                <section>
                 <div className="gallery">
                     <div className="main-image">
                         <img src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" alt="Living Room" />
@@ -95,8 +109,9 @@ const ListingDetail = () => {
                 <div className="show-all">
                     <button>Show all photos</button>
                 </div>
-
+                </section>
                 {/* Rental Details Section */}
+                <section>
                 <div style={{ display: "flex" }}>
                     <div className="rental-details">
                         <h2>Entire rental unit hosted by Ghazal</h2>
@@ -104,23 +119,25 @@ const ListingDetail = () => {
 
                         <ul className="features">
                             <li>
-                                <img src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" alt="Entire home" />
-                                <span>Entire home</span>
-                                <p>You’ll have the apartment to yourself</p>
+                                <CiHome className='img' />
+                                <div>
+                                    <span>Entire home</span>
+                                    <p>You’ll have the apartment to yourself</p>
+                                </div>
                             </li>
                             <li>
-                                <img src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" alt="Enhanced Clean" />
-                                <span>Enhanced Clean</span>
-                                <p>This Host committed to Airbnb’s 5-step enhanced cleaning process.</p>
+                                <VscSparkle className='img' />
+                                <div>
+                                    <span>Enhanced Clean</span>
+                                    <p>This Host committed to Airbnb’s 5-step enhanced cleaning process.</p>
+                                </div>
                             </li>
                             <li>
-                                <img src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" alt="Self check-in" />
-                                <span>Self check-in</span>
-                                <p>Check yourself in with the keypad.</p>
-                            </li>
-                            <li>
-                                <img src="icon-cancellation.png" alt="Free cancellation" />
-                                <span>Free cancellation before Feb 14</span>
+                                <BsHouseCheck className='img' />
+                                <div>
+                                    <span>Self check-in</span>
+                                    <p>Check yourself in with the keypad.</p>
+                                </div>
                             </li>
                         </ul>
 
@@ -135,7 +152,7 @@ const ListingDetail = () => {
                     </div>
 
                     {/* Booking Summary Section */}
-                    <div className="booking-summary">
+                   <div className="booking-summary">
                         <div className="price-info">
                             <h3>$75 / night</h3>
                             <div className="rating">
@@ -148,11 +165,11 @@ const ListingDetail = () => {
                             <div className="date-selection">
                                 <div className="checkin">
                                     <label>CHECK-IN</label>
-                                    <input type="date" value="2022-02-19" />
+                                    <input type="date" value={startDate.toISOString().split('T')[0]} onChange={(e) => setStartDate(new Date(e.target.value))} />
                                 </div>
                                 <div className="checkout">
                                     <label>CHECKOUT</label>
-                                    <input type="date" value="2022-02-26" />
+                                    <input type="date" value={endDate.toISOString().split('T')[0]} onChange={(e) => setEndDate(new Date(e.target.value))} />
                                 </div>
                             </div>
 
@@ -165,10 +182,10 @@ const ListingDetail = () => {
 
                             <button className="reserve-button">Reserve</button>
 
-                            <p className="price-breakdown">
+                            <div className="price-breakdown">
                                 <div>
-                                    $79 × 7 nights
-                                    <span>$555</span>
+                                    $75 × {nights} nights
+                                    <span>${75 * nights}</span>
                                 </div>
                                 <div>
                                     Weekly discount
@@ -186,11 +203,12 @@ const ListingDetail = () => {
                                     Occupancy taxes and fees
                                     <span>$29</span><br />
                                 </div>
-                                <strong>Total<span>$701</span></strong>
-                            </p>
+                                <strong>Total<span>${75 * nights - 28 + 62 + 83 + 29}</span></strong>
+                            </div>
 
                         </div>
                     </div>
+                
                     {/* where you will sleep */}
 
                 </div>
@@ -204,6 +222,7 @@ const ListingDetail = () => {
                         </div>
                     </div>
                 </div>
+                </section>
                 {/* what this place offers */}
                 <section className="place-offers">
                     <h2>What this place offers</h2>
@@ -273,7 +292,7 @@ const ListingDetail = () => {
                 </section>
                 {/* calendar */}
                 <section className="booking-calendar">
-                    <h2>{Number(`${endDate.getUTCDate()}`)-Number(`${startDate.getUTCDate()}`)} nights in New York</h2>
+                    <h2>{Number(`${endDate.getUTCDate()}`) - Number(`${startDate.getUTCDate()}`)} nights in New York</h2>
                     <p>{`${startDate.toDateString()} - ${endDate.toDateString()}`}</p>
                     <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
                     <br />
@@ -349,19 +368,70 @@ const ListingDetail = () => {
                         <button className="show-more-btn">Show more</button>
                     </div>
                 </section>
+                {/* hosted by */}
+                <section className="hosted-by-section">
+                    <div className="host-info">
+                        <img src="https://th.bing.com/th/id/OIP.9Izv-aszItToTtEqRMSE0QHaE6?rs=1&pid=ImgDetMain" alt="Host" className="host-image" />
+                        <div className="host-details">
+                            <h2>Hosted by Ghazal</h2>
+                            <p>Joined May 2021</p>
+                            <div className="host-badges">
+                                <span>★ 12 Reviews</span>
+                                <span>🔍 Identity verified</span>
+                                <span>🏅 Superhost</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="host-description">
+                        <p><strong>Ghazal is a Superhost</strong></p>
+                        <br />
+                        <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
+                        <p>Response rate: 100%</p>
+                        <p>Response time: within an hour</p>
+                        <button className="contact-host-btn">Contact Host</button>
+                    </div>
+                    {/* <p className="payment-warning">
+        ⚠️ To protect your payment, never transfer money or communicate outside of the Airbnb website or app.
+      </p> */}
+                </section>
+
+                {/* things to know */}
+
+                <section className="things-to-know-section">
+                    <h2>Things to know</h2>
+                    <div className="things-to-know-content">
+                        <div className="house-rules">
+                            <h3>House rules</h3>
+                            <ul>
+                                <li><CiClock2 /> <span>Check-in: After 4:00 PM</span></li>
+                                <li> <CiClock2 /> <span>Checkout: 10:00 AM</span></li>
+                                <li><RiDoorLockBoxLine /> <span>Self check-in with lockbox</span></li>
+                                <li><MdOutlineChildFriendly /> <span>Not suitable for infants</span></li>
+                                <li><LiaSmokingBanSolid /> <span>No smoking</span></li>
+                                <li><MdOutlinePets /> <span>No pets</span></li>
+                                <li><LuPartyPopper /> <span>No parties or events</span></li>
+                            </ul>
+                        </div>
+                        <div className="health-safety">
+                            <h3>Health & safety</h3>
+                            <ul>
+                                <li><BsStars /> <span>Committed to cleaning process.</span></li>
+                                <li> <FaVirusCovid /> <span>Airbnb's social-distancing</span></li>
+                                <li><RiAlarmWarningFill /> <span>Carbon monoxide alarm</span></li>
+                                <li><GiSmokeBomb /> <span>Smoke alarm</span></li>
+                                <li> <RiBankCardFill /> <span>Security Deposit - if you damage the home</span></li>
+                            </ul>
+                        </div>
+                        <div className="cancellation-policy">
+                            <h3>Cancellation policy </h3>
+                            <p>Free cancel before Feb 14 <a href="#">Show more</a></p>
+                        </div>
+                    </div>
+                </section>
             </div>
+            <Footer className="footer-list" />
         </>
     );
 };
 
 export default ListingDetail;
-<div className="where-you-sleep">
-    <h2>Where you’ll sleep</h2>
-    <div className="sleep-details">
-        <img src="bedroom-image.jpg" alt="Bedroom" />
-        <div className="sleep-info">
-            <h3>Bedroom</h3>
-            <p>1 queen bed</p>
-        </div>
-    </div>
-</div>

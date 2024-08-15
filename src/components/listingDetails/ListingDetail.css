@@ -87,21 +87,22 @@
     list-style: none;
     padding: 0;
     margin: 20px 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
   
   .features li {
     display: flex;
-    flex-direction: column;
-  }
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
   
-  .features li img {
+.features li .img {
     width: 24px;
     height: 24px;
-    margin-bottom: 5px;
-  }
+    margin-bottom: 25px;
+    margin-right: 12px;
+}
   
   
   .features li p {
@@ -462,3 +463,194 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
+
+  /* hosted by  */
+  .hosted-by-section {
+    margin-top: 30px;
+    padding: 20px 20px 20px 0px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .host-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+  
+  .host-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-bottom: 28px;
+  }
+  
+  .host-details {
+    flex: 1;
+  }
+  
+  .host-details h2 {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+  
+  .host-details p {
+    margin: 0;
+    color: #757575;
+  }
+  
+  .host-badges {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .host-badges span {
+    margin-right: 15px;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .host-description {
+    margin-top: 15px;
+  }
+  
+  .host-description p {
+    margin: 5px 0;
+  }
+  
+  .contact-host-btn {
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #000;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  .payment-warning {
+    margin-top: 20px;
+    color: #ff0000;
+    font-size: 14px;
+  }
+  
+  /* things to know */
+
+  .things-to-know-section {
+    margin-top: 30px;
+    padding: 20px 20px 20px 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .things-to-know-section h2{
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .things-to-know-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .things-to-know-content > div {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .house-rules, .health-safety, .cancellation-policy {
+    margin-bottom: 20px;
+  }
+  
+  .house-rules h3, .health-safety h3, .cancellation-policy h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .house-rules ul, .health-safety ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .house-rules ul li, .health-safety ul li {
+    margin-bottom: 8px;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+
+  .house-rules ul li span, .health-safety ul li span {
+    margin-left: 12px;
+  }
+
+  .house-rules ul li svg, .health-safety ul li svg{
+    font-size: 22px;
+  }
+  
+  .cancellation-policy p {
+    color: #333;
+  }
+  
+  .cancellation-policy a {
+    color: #0056b3;
+    text-decoration: none;
+  }
+  
+  .cancellation-policy a:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-list{
+    background-color: #f9f9f9;
+    padding: 20px;
+    padding-left: 0px !important;
+    margin-top: 60px;
+  }
+
+  /* explore */
+
+  .explore-options-section {
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+  background-color: #f8f8f8;
+}
+
+.options-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.city-options ul,
+.unique-stays ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.city-options ul li,
+.unique-stays ul li {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.unique-stays h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.breadcrumb {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.breadcrumb a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
