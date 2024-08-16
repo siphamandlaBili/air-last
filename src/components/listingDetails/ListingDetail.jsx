@@ -154,7 +154,7 @@ const ListingDetail = () => {
                     {/* Booking Summary Section */}
                    <div className="booking-summary">
                         <div className="price-info">
-                            <h3>$75 / night</h3>
+                            <h3>R75 / night</h3>
                             <div className="rating">
                                 <span>⭐ 5.0</span>
                                 <a href="#">7 reviews</a>
@@ -184,26 +184,26 @@ const ListingDetail = () => {
 
                             <div className="price-breakdown">
                                 <div>
-                                    $75 × {nights} nights
-                                    <span>${75 * nights}</span>
+                                    R75 × {nights} nights
+                                    <span>R{75 * nights}</span>
                                 </div>
                                 <div>
                                     Weekly discount
-                                    <span>-$28</span><br />
+                                    <span>-R28</span><br />
                                 </div>
                                 <div>
                                     Cleaning fee
-                                    <span>$62</span><br />
+                                    <span>R62</span><br />
                                 </div>
                                 <div>
                                     Service fee
-                                    <span>$83</span><br />
+                                    <span>R83</span><br />
                                 </div>
                                 <div>
                                     Occupancy taxes and fees
-                                    <span>$29</span><br />
+                                    <span>R29</span><br />
                                 </div>
-                                <strong>Total<span>${75 * nights - 28 + 62 + 83 + 29}</span></strong>
+                                <strong>Total<span>R{75 * nights - 28 + 62 + 83 + 29}</span></strong>
                             </div>
 
                         </div>
@@ -292,8 +292,8 @@ const ListingDetail = () => {
                 </section>
                 {/* calendar */}
                 <section className="booking-calendar">
-                    <h2>{Number(`${endDate.getUTCDate()}`) - Number(`${startDate.getUTCDate()}`)} nights in New York</h2>
-                    <p>{`${startDate.toDateString()} - ${endDate.toDateString()}`}</p>
+                    <h2>{Number(`R{endDate.getUTCDate()}`) - Number(`R{startDate.getUTCDate()}`)} nights in New York</h2>
+                    <p>{`R{startDate.toDateString()} - R{endDate.toDateString()}`}</p>
                     <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
                     <br />
 
@@ -354,7 +354,7 @@ const ListingDetail = () => {
                         <div className="layout-reviews">
                             {reviews.map((review, index) => (
                                 <div className="review-item" key={index}>
-                                    <img src={review.image} alt={`${review.name}`} className="reviewer-image" />
+                                    <img src={review.image} alt={`R{review.name}`} className="reviewer-image" />
                                     <div className="review-content">
                                         <div className="reviewer-info">
                                             <span className="reviewer-name">{review.name}</span>
