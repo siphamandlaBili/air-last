@@ -2,16 +2,17 @@
 import { GrFavorite } from "react-icons/gr";
 import { FaStar } from "react-icons/fa";
 import "./listing.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const SearchResult = ({img,location,title,description,star,price,total,}) => {
+const SearchResult = ({image,location,title,description,star,price,total,id}) => {
+  const navigate = useNavigate();
   const handleMe =(e)=>{
-    console.log(location)
+    navigate(`/single/${id}`)
   }
   return (
-      <Link to={`/listings/${location}`} onClick={handleMe}>
+      <Link  onClick={handleMe}>
     <div className="searchResult">
-      <img src={img} alt="" />
+      <img src={image} alt="" />
       <GrFavorite className="searchResult_heart" />
       <div className="searchResult_info">
         <div className="searchResult_infoTop">

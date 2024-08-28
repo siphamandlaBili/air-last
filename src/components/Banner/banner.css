@@ -22,16 +22,17 @@
 
 .banner-background {
     display: flex;
-    background-repeat: no-repeat;
+    background: url('https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/home-improvement/wp-content/uploads/2022/08/featured_image_reasons_to_invest_in_a_vacation_home.jpeg.jpg');
     background-size: cover;
     background-position: center;
-    background: url('https://s3-alpha-sig.figma.com/img/8021/96a6/83d8b4f496c94cf0a33728d8f6e90e4b?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=D1gQfc8Hqfma~4i0XYa7cevhoJPA9CZuW2bMYanp9DjImqX2zPE5W1GHbbpEsO4PpLGaWk-qKCW3YgGls~hkXzAao-Dnm7krYF8fDThjihxSLHrLoN7ek7KSlxpsM0TSs1Fu0VO98jJB1n07OGg5D8FZDmNFN15rTJE7BE9XcVj8iwc7PC~5FesQqRSfT6cTACJqbaOLqNzYeKdkA3YVW24Cr0JWAjYpzF8JzIUG5QVzCG3VucFNvFicIFzrKdYeftAphLogjnFmZoVIwryxnYY7pbGiPKCi9N~WKadfqkyJHa5gofyqkK6MgEPR5k9OeUdMuBKg039Upp-iH5r8ZQ__') no-repeat center center;
-    height: 100%; /* Full height of container */
+    background-repeat: no-repeat;
+    height: 85%; /* Full height of container */
     width: 100%; /* Full width of container */
+    border-radius: 20px;
     justify-content: center;
     align-items: center; /* Center content vertically */
     position: relative;
-    /* margin: 20px 30px; */
+    margin: 20px 30px;
 }
 
 .banner-content {

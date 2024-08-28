@@ -2,6 +2,8 @@ import { Button, ButtonGroup } from '@chakra-ui/react';
 import './banner.css';
 
 function Banner() {
+
+    
     return (
         <div className="banner-container">
             {/* Overlay for the banner */}

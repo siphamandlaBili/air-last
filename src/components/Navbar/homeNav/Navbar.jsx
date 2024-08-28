@@ -43,10 +43,8 @@ function Navbar() {
     </nav>
     {isLoginVisible && (
         <div className="login-modal">
-            <span><Link to="trip-advisor">login</Link></span>
-            <span>login</span>
-            <span>login</span>
-            
+            <span><Link to="/login">login</Link></span>
+            <span><Link to="/register">register</Link></span> 
         </div>
       )}
     </>

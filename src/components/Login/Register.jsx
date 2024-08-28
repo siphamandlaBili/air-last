@@ -3,12 +3,13 @@ import axios from 'axios';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-
+    
     // Initialize useNavigate hook
     const navigate = useNavigate();
 
@@ -18,22 +19,16 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:5000/api/users/login', {
+            const response = await axios.post('http://localhost:5000/api/users/register', {
+                name,
                 email,
                 password,
             });
-
-            // Handle successful login
-            console.log(response.data);
-            // Example: Save token to local storage
-            localStorage.setItem('token', response.data.token);
-
             // Navigate to the home page
-            navigate('/');
+            navigate('/login');
         } catch (error) {
-            // Handle error
-            console.error(error);
-            setError('Invalid email or password');
+            
+            setError('user exists');
         } finally {
             setLoading(false);
         }
@@ -46,6 +41,18 @@ const Login = () => {
                 <h2>Login</h2>
                 {error && <p className="error-message">{error}</p>}
                 <form className="form-login" onSubmit={handleLogin}>
+                <div className="input-container">
+                        <label htmlFor="password">Name</label>
+                        <input
+                            className="login-input"
+                            type="text"
+                            id="name"
+                            name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
                     <div className="input-container">
                         <label htmlFor="email">Email</label>
                         <input
@@ -70,11 +77,9 @@ const Login = () => {
                             required
                         />
                     </div>
-                    <div className="forgot-password">
-                        <a href="#">Forgot Password?</a>
-                    </div>
+                   
                     <button type="submit" className="login-button" disabled={loading}>
-                        {loading ? 'Logging in...' : 'Login'}
+                        {loading ? 'Register...' : 'Register'}
                     </button>
                 </form>
             </div>
@@ -82,4 +87,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

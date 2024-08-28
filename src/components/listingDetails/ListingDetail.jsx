@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './ListingDetail.css';
 import NavbarSearch from '../Navbar/SearchListingNav/NavbarSearch';
 import { TbLeaf, TbShieldCancel } from "react-icons/tb";
@@ -20,7 +20,26 @@ import { RiAlarmWarningFill, RiBankCardFill, RiDoorLockBoxLine } from 'react-ico
 import { LiaSmokingBanSolid } from 'react-icons/lia';
 import { GiSmokeBomb } from 'react-icons/gi';
 import Footer from '../Footer/Footer';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
 const ListingDetail = () => {
+    const dataId = useParams();
+    const [houseData,setHouseData] = useState('');
+    console.log(houseData)
+    const fetchData = async (id)=>{
+       try{
+           const data = await axios.get(`http://localhost:5000/api/accommodations/${id}`);
+           setHouseData(data.data)
+       } catch(error){
+         console.log(error)
+       }
+    }
+    useEffect(()=>{
+        fetchData(dataId.id)
+    },[])
+
+
 //    start and end date
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -85,12 +104,12 @@ const ListingDetail = () => {
             <div className="container">
                 {/* Header Section */}
                 <section className="header">
-                    <h1>Bordeaux Getaway</h1>
+                    <h1>{houseData?.host}</h1>
                     <div className="rating">
                         <span>⭐ 5.0</span>
                         <a href="#">7 reviews</a>
                         <span> · Superhost</span>
-                        <a href="#"> · Bordeaux, France</a>
+                        <a href="#"> · {houseData?.location}</a>
                     </div>
                 </section>
 
@@ -114,8 +133,8 @@ const ListingDetail = () => {
                 <section>
                 <div style={{ display: "flex" }}>
                     <div className="rental-details">
-                        <h2>Entire rental unit hosted by Ghazal</h2>
-                        <p>2 guests · 1 bedroom · 1 bed · 1 bath</p>
+                        <h2>Entire rental unit hosted by {houseData?.host}</h2>
+                        <p>{houseData?.guests} · 1 bedroom · {houseData?.beds} bed · 1 bath</p>
 
                         <ul className="features">
                             <li>
@@ -142,10 +161,7 @@ const ListingDetail = () => {
                         </ul>
 
                         <p className="description">
-                            Come and stay in this superb duplex T2, in the heart of the historic center of Bordeaux.
-                            Spacious and bright, in a real Bordeaux building in exposed stone, you will enjoy all the
-                            charms of the city thanks to its ideal location. Close to many shops, bars and restaurants,
-                            you can access the apartment by tram A and C and bus routes 27 and 44.
+                        hello
                         </p>
 
                         <a href="#" className="show-more">Show more ›</a>
@@ -154,7 +170,7 @@ const ListingDetail = () => {
                     {/* Booking Summary Section */}
                    <div className="booking-summary">
                         <div className="price-info">
-                            <h3>R75 / night</h3>
+                            <h3>R {houseData?.price} / night</h3>
                             <div className="rating">
                                 <span>⭐ 5.0</span>
                                 <a href="#">7 reviews</a>
@@ -184,8 +200,8 @@ const ListingDetail = () => {
 
                             <div className="price-breakdown">
                                 <div>
-                                    R75 × {nights} nights
-                                    <span>R{75 * nights}</span>
+                                {houseData?.price} × {nights} nights
+                                    <span>R{houseData?.price * nights}</span>
                                 </div>
                                 <div>
                                     Weekly discount
@@ -203,7 +219,7 @@ const ListingDetail = () => {
                                     Occupancy taxes and fees
                                     <span>R29</span><br />
                                 </div>
-                                <strong>Total<span>R{75 * nights - 28 + 62 + 83 + 29}</span></strong>
+                                <strong>Total<span>R{houseData?.price * nights - 28 + 62 + 83 + 29}</span></strong>
                             </div>
 
                         </div>
@@ -292,8 +308,8 @@ const ListingDetail = () => {
                 </section>
                 {/* calendar */}
                 <section className="booking-calendar">
-                    <h2>{Number(`R{endDate.getUTCDate()}`) - Number(`R{startDate.getUTCDate()}`)} nights in New York</h2>
-                    <p>{`R{startDate.toDateString()} - R{endDate.toDateString()}`}</p>
+                    <h2>{nights} nights in New York</h2>
+                    <p>{`${startDate.toDateString()} - ${endDate.toDateString()}`}</p>
                     <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
                     <br />
 
@@ -373,7 +389,7 @@ const ListingDetail = () => {
                     <div className="host-info">
                         <img src="https://th.bing.com/th/id/OIP.9Izv-aszItToTtEqRMSE0QHaE6?rs=1&pid=ImgDetMain" alt="Host" className="host-image" />
                         <div className="host-details">
-                            <h2>Hosted by Ghazal</h2>
+                            <h2>Hosted by {houseData?.host}</h2>
                             <p>Joined May 2021</p>
                             <div className="host-badges">
                                 <span>★ 12 Reviews</span>
@@ -383,7 +399,7 @@ const ListingDetail = () => {
                         </div>
                     </div>
                     <div className="host-description">
-                        <p><strong>Ghazal is a Superhost</strong></p>
+                        <p><strong>{houseData?.host} is a Superhost</strong></p>
                         <br />
                         <p>Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.</p>
                         <p>Response rate: 100%</p>

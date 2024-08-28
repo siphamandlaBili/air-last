@@ -48,15 +48,13 @@ nav {
   outline: none;
   font-size: 16px;
   color: black;
-  width: 100px;
+  width: 200px;
   flex: 1;
 
   padding-left: 10px;
 }
 
-#border {
-  border-right: 1px solid grey;
-}
+
 
 .search-button {
   background-color: #ff385c;

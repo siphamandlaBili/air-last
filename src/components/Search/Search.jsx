@@ -1,35 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { IoSearchSharp } from 'react-icons/io5';
+import { useSearch } from '../../SearchContext';
 import './Search.css';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
+    const [query, setQuery] = useState('');
+    const { results, setResults, loading, setLoading, error, setError } = useSearch();
+    const navigate = useNavigate()
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError('');
+
+        try {
+            // Fetch all accommodations
+            const response = await axios.get('http://localhost:5000/api/accommodations');
+            const accommodations = response.data;
+
+            // Filter accommodations by location
+            const filteredResults = accommodations.filter(accommodation =>
+                accommodation.location.toLowerCase().includes(query.toLowerCase())
+            );
+
+            setResults(filteredResults);
+
+            console.log(results);
+            navigate('/listings')
+
+        } catch (error) {
+            console.error('Error fetching accommodations:', error);
+            setError('Failed to fetch accommodations');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="search-container">
-            <form className="search-box">
+            <form className="search-box" onSubmit={handleSearch}>
                 <div className="search-field">
-                    <label htmlFor="location">Location</label>
-                    <select id="location" aria-label="Select location">
-                        <option value="">Select hotel</option>
-                        <option value="new-york">New York</option>
-                        <option value="los-angeles">Los Angeles</option>
-                        <option value="chicago">Chicago</option>
-                        <option value="miami">Miami</option>
-                    </select>
+                    <input
+                        type="text"
+                        placeholder="Search by location..."
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                    />
                 </div>
 
-                <div className="search-field">
-                    <label htmlFor="checkin">Check in</label>
-                    <input type="date" id="checkin" aria-label="Check-in date" />
-                </div>
-                <div className="search-field">
-                    <label htmlFor="checkout">Check out</label>
-                    <input type="date" id="checkout" aria-label="Check-out date" />
-                </div>
-                <div className="search-field">
-                    <label htmlFor="guests">Guests</label>
-                    <input type="number" id="guests" aria-label="Number of guests" placeholder="Add guests" />
-                </div>
-                <button type="submit" className="search-button">
+                <button type="submit" className="search-button" disabled={loading}>
                     <IoSearchSharp aria-label="Search" />
                 </button>
             </form>

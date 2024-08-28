@@ -2,21 +2,21 @@
     border-radius: 40px !important;
 }
 
-.searchPage-info {
-  padding: 20px 20px 0 100px;
+.reserve-info {
+  padding: 20px 20px 0 27px;
 }
   
-  .searchPage-info > p {
+  .reserve-info > p {
     margin-bottom: 10px;
     font-size: 16px;
   }
   
-  .searchPage-info > h1 {
+  .reserve-info > h1 {
     margin-bottom: 30px;
     font-size: 16px;
   }
   
-  .searchPage-info > button {
+  .reserve-info > button {
     border-radius: 30px;
     text-transform: inherit;
     margin: 5px;
