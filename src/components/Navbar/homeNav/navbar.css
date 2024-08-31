@@ -23,7 +23,7 @@ nav{
 }
 
 .nav-user{
-    width: 220px;
+    width: fit-content;
 }
 .login{
     background-color: rgba(135, 134, 134, 0.415);
@@ -46,6 +46,10 @@ nav{
     border-radius: 10px;
     padding: 10px 0;
 }
+
+.login > * ,.css-cfmrwp{
+    margin-right: 4px;
+  }
 
 .login-modal span:hover{
    background-color: rgba(211, 211, 211, 0.459);

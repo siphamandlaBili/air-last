@@ -22,11 +22,19 @@ import { GiSmokeBomb } from 'react-icons/gi';
 import Footer from '../Footer/Footer';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../Navbar/homeNav/Navbar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'universal-cookie';
 
 const ListingDetail = () => {
+    const cookies = new Cookies();
+    const loggedInUser = cookies.get('loggedInUser')
     const dataId = useParams();
+    const navigate = useNavigate();
     const [houseData,setHouseData] = useState('');
-    console.log(houseData)
+    console.log(houseData._id)
     const fetchData = async (id)=>{
        try{
            const data = await axios.get(`http://localhost:5000/api/accommodations/${id}`);
@@ -45,8 +53,8 @@ const ListingDetail = () => {
     const [endDate, setEndDate] = useState(new Date());
 // selection range to select dates inbetween startDate and endDate
     const selectionRange = {
-        startDate: startDate,
-        endDate: endDate,
+         startDate: startDate,
+         endDate: endDate,
         key: "selection",
     };
 
@@ -59,8 +67,21 @@ const ListingDetail = () => {
         const diffTime = Math.abs(end - start);
         return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     };
-
     const nights = calculateNights(startDate , endDate);
+    console.log(loggedInUser)
+    const reserveAcommodation = async ()=>{
+        try {
+            const response = await axios.post(`http://localhost:5000/api/reservations`, {checkInDate:startDate,checkOutDate:endDate,accommodation:`${houseData._id}`,guests:2,totalPrice:houseData?.price * nights - 28 + 62 + 83 + 29,createdBy:loggedInUser.user.id}, {
+              headers: {
+                Authorization: `Bearer ${loggedInUser?.token}`,
+              },
+            });
+            console.log('made reservation');
+          } catch (error) {
+            console.error('Error:', error.response ? error.response.data : error.message);
+          }
+        };
+    
 // reviews
     const reviews = [
         {
@@ -98,9 +119,10 @@ const ListingDetail = () => {
             image: 'https://th.bing.com/th/id/OIP.qbIF3gNiqXnB_SZI2bqsugHaFw?rs=1&pid=ImgDetMain'
         }
     ];
+
     return (
         <>
-            <NavbarSearch />
+            <Navbar/>
             <div className="container">
                 {/* Header Section */}
                 <section className="header">
@@ -196,7 +218,7 @@ const ListingDetail = () => {
                                 </select>
                             </div>
 
-                            <button className="reserve-button">Reserve</button>
+                            <button className="reserve-button" onClick={reserveAcommodation}>Reserve</button>
 
                             <div className="price-breakdown">
                                 <div>

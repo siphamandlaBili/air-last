@@ -24,14 +24,14 @@ nav {
 }
 
 .nav-user {
-  width: 220px;
+  width: fit-content;
 }
 
 .login {
   background-color: rgba(135, 134, 134, 0.415);
   padding: 5px 10px;
   border-radius: 20px;
-  width: 70px;
+  width: fit-content;
   margin-left: 20px;
 }
 

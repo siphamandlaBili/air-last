@@ -1,7 +1,8 @@
-import Footer from "../Footer/Footer";
-import Navbar from "../Navbar/homeNav/Navbar";
+import { useEffect, useState } from "react";
 import "./ReservationTable.css"
-import { Stack, Button } from "@chakra-ui/react";
+import Cookies from 'universal-cookie';
+import axios from "axios";
+
 const reservations = [
   { id: 1, name: "Johann Coetzee", property: "Property 1", checkin: "19/06/2024", checkout: "24/06/2024" },
   { id: 2, name: "Asif Hassam", property: "Property 2", checkin: "19/06/2024", checkout: "19/06/2024" },
@@ -9,52 +10,67 @@ const reservations = [
 ];
 
 const ReservationsTable = () => {
+  const cookies = new Cookies();
+  const loggedInUser = cookies.get('loggedInUser')
+  const [reservations, setResevations] = useState([]);
+  const fetchData = async (id) => {
+    try {
+      const data = await axios.get(`http://localhost:5000/api/reservations/host`, {
+        headers: {
+          Authorization: `Bearer ${loggedInUser.token}`,
+          'Content-Type': 'application/json',
+        }
+      });
+
+      setResevations(data.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+
   return (
     <>
-    <Navbar/>
-    <div className="reserve-info">
-                <Stack direction='row' spacing={4} align='center' wrap='wrap'>
-                    <Button size="sm" colorScheme='teal' variant='outline' className='searchPageBtn'>
-                        View Reservations
-                    </Button>
-                    <Button size="sm" colorScheme='teal' variant='outline' className='searchPageBtn'>
-                        View Listings
-                    </Button>
-                    <Button size="sm" colorScheme='teal' variant='outline' className='searchPageBtn'>
-                        Create Listing
-                    </Button>
-                </Stack>
-            </div>
-    <div className="reservations-table">
-      <h2>My Reservations</h2>
-      <div className="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Booked by</th>
-            <th>Property</th>
-            <th>Checkin</th>
-            <th>Checkout</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {reservations.map(reservation => (
-            <tr key={reservation.id}>
-              <td>{reservation.name}</td>
-              <td>{reservation.property}</td>
-              <td>{reservation.checkin}</td>
-              <td>{reservation.checkout}</td>
-              <td>
-                <button className="delete-button">Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      <div className="reservations-table">
+        <h2>My Reservations</h2>
+        <div className="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Booked by</th>
+                <th>Property</th>
+                <th>Checkin</th>
+                <th>Checkout</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {reservations?.map((reservation, i) => {
+                console.log(reservation)
+                const { checkInDate, checkOutDate, createdAt, guests, totalPrice, updatedAt, user } = reservation;
+
+                console.log(loggedInUser.user.id)
+                if (reservation.user == loggedInUser.user.id) {
+                  return <tr key={i}>
+                    <td>{reservation?.user}</td>
+                    <td>{reservation?.accommodation?.name}</td>
+                    <td>{checkInDate}</td>
+                    <td>{checkOutDate}</td>
+                    <td>
+                      <button className="delete-button">Delete</button>
+                    </td>
+                  </tr>
+                }
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-    <Footer/>
+
     </>
   );
 };
