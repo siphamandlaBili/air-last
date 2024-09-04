@@ -54,3 +54,8 @@
   .search-button i {
     font-size: 16px;
   }
+
+  .search-field{
+    display: flex;
+    flex-direction: row;
+  }

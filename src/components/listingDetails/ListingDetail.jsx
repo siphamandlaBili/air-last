@@ -78,7 +78,7 @@ const ListingDetail = () => {
             });
             toast.success('made reservation');
           } catch (error) {
-            toast.error('Error:', error.response ? error.response.data : error.message);
+            toast.error('reigister and login to reserve');
           }
         };
     
@@ -211,7 +211,7 @@ const ListingDetail = () => {
                                     <label>CHECK-IN</label>
                                     <input type="date" value={startDate.toISOString().split('T')[0]} onChange={(e) => setStartDate(new Date(e.target.value))} />
                                 </div>
-                                <div className="checkout">
+                                <div className="checkin">
                                     <label>CHECKOUT</label>
                                     <input type="date" value={endDate.toISOString().split('T')[0]} onChange={(e) => setEndDate(new Date(e.target.value))} />
                                 </div>

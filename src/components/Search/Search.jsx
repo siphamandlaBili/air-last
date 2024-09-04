@@ -45,6 +45,13 @@ const Search = () => {
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
                     />
+                    <div>
+                        <input type="date" />
+                        {/* <span>check in</span> */}
+                    </div>
+                    <div>
+                        <input type="date" />
+                    </div>
                 </div>
 
                 <button type="submit" className="search-button" disabled={loading}>
