@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -78,6 +78,9 @@ const Login = () => {
                     </div>
                     <div className="forgot-password">
                         <a href="#">Forgot Password?</a>
+                    </div>
+                    <div className="forgot-password">
+                        <Link to='/register'>Register</Link>
                     </div>
                     <button type="submit" className="login-button" disabled={loading}>
                         {loading ? 'Logging in...' : 'Login'}

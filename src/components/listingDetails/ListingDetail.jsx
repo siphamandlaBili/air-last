@@ -32,13 +32,13 @@ const ListingDetail = () => {
     const cookies = new Cookies();
     const loggedInUser = cookies.get('loggedInUser')
     const dataId = useParams();
-    const navigate = useNavigate();
-    const [houseData,setHouseData] = useState('');
+    const [houseData,setHouseData] = useState(null);
    
     const fetchData = async (id)=>{
        try{
            const data = await axios.get(`https://airbnb-backend-1-ebkj.onrender.com/api/accommodations/${id}`);
-           setHouseData(data.data)
+           await setHouseData(data.data)
+           console.log(houseData)
        } catch(error){
          toast.error(error.message)
        }
@@ -120,6 +120,11 @@ const ListingDetail = () => {
         }
     ];
 
+    console.log(houseData)
+    if (!houseData) {
+        return <div>Loading...</div>; // Or a spinner/loading animation
+    }
+
     return (
         <>
         <ToastContainer/>
@@ -127,7 +132,7 @@ const ListingDetail = () => {
             <div className="container">
                 {/* Header Section */}
                 <section className="header">
-                    <h1>{houseData?.host}</h1>
+                    <h1>{houseData?.name}</h1>
                     <div className="rating">
                         <span>⭐ 5.0</span>
                         <a href="#">7 reviews</a>
@@ -140,11 +145,11 @@ const ListingDetail = () => {
                 <section>
                 <div className="gallery">
                     <div className="main-image">
-                        <img src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" alt="Living Room" />
+                        <img src={houseData?.images[1]} alt="Living Room" />
                     </div>
                     <div className="thumbnail-grid">
-                        <img src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" alt="Living Room 2" />
-                        <img src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" alt="Kitchen" />
+                        <img src={houseData?.images[2]} alt="Living Room 2" />
+                        <img src={houseData?.images[3]} alt="Kitchen" />
                     </div>
                 </div>
 
@@ -157,7 +162,7 @@ const ListingDetail = () => {
                 <div style={{ display: "flex" }}>
                     <div className="rental-details">
                         <h2>Entire rental unit hosted by {houseData?.host}</h2>
-                        <p>{houseData?.guests} · 1 bedroom · {houseData?.beds} bed · 1 bath</p>
+                        <p> {houseData?.bedrooms} bedrooms · {houseData?.beds} beds · {houseData?.bathrooms} bath</p>
 
                         <ul className="features">
                             <li>
@@ -215,7 +220,7 @@ const ListingDetail = () => {
                             <div className="guests-selection">
                                 <label>GUESTS</label>
                                 <select>
-                                    <option value="2">2 guests</option>
+                                    <option value={houseData?.guests}>2 guests</option>
                                 </select>
                             </div>
 
@@ -257,7 +262,7 @@ const ListingDetail = () => {
                         <img src="https://buffer.com/library/content/images/size/w1200/2023/10/free-images.jpg" alt="Bedroom" />
                         <div className="sleep-info">
                             <h3>Bedroom</h3>
-                            <p>1 queen bed</p>
+                            <p>{houseData?.beds} queen bed</p>
                         </div>
                     </div>
                 </div>
@@ -331,7 +336,7 @@ const ListingDetail = () => {
                 </section>
                 {/* calendar */}
                 <section className="booking-calendar">
-                    <h2>{nights} nights in New York</h2>
+                    <h2>{nights} nights in {houseData?.name}</h2>
                     <p>{`${startDate.toDateString()} - ${endDate.toDateString()}`}</p>
                     <DateRangePicker ranges={[selectionRange]} onChange={handleSelect} />
                     <br />

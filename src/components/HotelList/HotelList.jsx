@@ -45,7 +45,7 @@ function HotelList() {
         hotels.map((hotel, index) => (
           <HotelCard
             key={index}
-            image={hotel.image}
+            image={hotel.images[0]}
             title={hotel.name} // Assuming `name` is the title
             details={`Location: ${hotel.location}, Rating: ${hotel.rating}`} // Combine details
             price={`$${hotel.price}`} // Format price with $

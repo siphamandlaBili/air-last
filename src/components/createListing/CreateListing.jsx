@@ -55,6 +55,22 @@ const CreateListing = () => {
                 }
             });
             toast.success('created listing');
+            setFormData({
+                host: `${user.name}`,
+                name: '',
+                bedrooms: '',
+                bathrooms: '',
+                beds: 3,
+                type: 'apartment',
+                location: '',
+                description: '',
+                amenities: '',
+                createdBy: `${user.id}`,
+                guests: 4,
+                rating: 5,
+                price: 420,
+                images: ['', '', '', ''] // Initialize with 4 empty strings for image links
+            })
         } catch (error) {
             toast.error('Error submitting the form:');
         }

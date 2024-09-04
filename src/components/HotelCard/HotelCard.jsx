@@ -8,7 +8,7 @@ const HotelCard = ({ image, title, details, price, id, onDelete }) => {
   const delet = async (id) => {
     try {
       const response = await axios.delete(`https://airbnb-backend-1-ebkj.onrender.com/api/accommodations/${id}`);
-      console.log(response);
+      
       onDelete(id); // Trigger the parent to remove this card
     } catch (error) {
       console.error('Error deleting accommodation:', error);

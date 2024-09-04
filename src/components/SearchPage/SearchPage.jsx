@@ -10,7 +10,7 @@ const SearchPage = () => {
     // Access the global state
     const { results } = useSearch();
     const data = useSearch();
-    console.log(results, data)
+    
     return (
         <div className="searchPage">
             <NavbarSearch />
@@ -43,7 +43,7 @@ const SearchPage = () => {
                        return  <SearchResult
                             id = {result._id}
                             key={result._id} // Make sure your result object has an id or unique key
-                            image={result.image}
+                            image={result.images[0]}
                             location={result.location}
                             title={result.title}
                             description={result.description}
