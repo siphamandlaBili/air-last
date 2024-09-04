@@ -4,7 +4,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import Navbar from "../Navbar/homeNav/Navbar";
 const Error = ()=>{
     const {data,status}= useRouteError();
-    console.log(data, status);
+    
 
     if(status == 404){
     return <div className="htm">

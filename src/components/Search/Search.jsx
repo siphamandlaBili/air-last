@@ -16,7 +16,7 @@ const Search = () => {
 
         try {
             // Fetch all accommodations
-            const response = await axios.get('http://localhost:5000/api/accommodations');
+            const response = await axios.get('https://airbnb-backend-1-ebkj.onrender.com/api/accommodations');
             const accommodations = response.data;
 
             // Filter accommodations by location
@@ -25,8 +25,6 @@ const Search = () => {
             );
 
             setResults(filteredResults);
-
-            console.log(results);
             navigate('/listings')
 
         } catch (error) {

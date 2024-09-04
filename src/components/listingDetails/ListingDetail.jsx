@@ -34,13 +34,13 @@ const ListingDetail = () => {
     const dataId = useParams();
     const navigate = useNavigate();
     const [houseData,setHouseData] = useState('');
-    console.log(houseData._id)
+   
     const fetchData = async (id)=>{
        try{
-           const data = await axios.get(`http://localhost:5000/api/accommodations/${id}`);
+           const data = await axios.get(`https://airbnb-backend-1-ebkj.onrender.com/api/accommodations/${id}`);
            setHouseData(data.data)
        } catch(error){
-         console.log(error)
+         toast.error(error.message)
        }
     }
     useEffect(()=>{
@@ -68,17 +68,17 @@ const ListingDetail = () => {
         return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     };
     const nights = calculateNights(startDate , endDate);
-    console.log(loggedInUser)
+  
     const reserveAcommodation = async ()=>{
         try {
-            const response = await axios.post(`http://localhost:5000/api/reservations`, {checkInDate:startDate,checkOutDate:endDate,accommodation:`${houseData._id}`,guests:2,totalPrice:houseData?.price * nights - 28 + 62 + 83 + 29,createdBy:loggedInUser.user.id}, {
+            const response = await axios.post(`https://airbnb-backend-1-ebkj.onrender.com/api/reservations`, {checkInDate:startDate,checkOutDate:endDate,accommodation:`${houseData._id}`,guests:loggedInUser.user.name,totalPrice:houseData?.price * nights - 28 + 62 + 83 + 29,createdBy:loggedInUser.user.id}, {
               headers: {
                 Authorization: `Bearer ${loggedInUser?.token}`,
               },
             });
-            console.log('made reservation');
+            toast.success('made reservation');
           } catch (error) {
-            console.error('Error:', error.response ? error.response.data : error.message);
+            toast.error('Error:', error.response ? error.response.data : error.message);
           }
         };
     
@@ -122,6 +122,7 @@ const ListingDetail = () => {
 
     return (
         <>
+        <ToastContainer/>
             <Navbar/>
             <div className="container">
                 {/* Header Section */}

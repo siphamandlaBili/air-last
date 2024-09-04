@@ -1,8 +1,8 @@
 import { GrLanguage } from "react-icons/gr";
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
+import { Avatar} from '@chakra-ui/react'
 import "./navbar.css"
-import { Link, NavLink,useRouteError } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
 import { useState } from "react";
 import Cookies from 'universal-cookie';
 import { ToastContainer, toast } from 'react-toastify';
@@ -10,12 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const error = useRouteError();
+  
   const cookies = new Cookies();
   const loggedInUser = cookies.get('loggedInUser')?.user;
   const navigate = useNavigate();
-  console.log(loggedInUser);
-  
+ 
   const [isLoginVisible, setIsLoginVisible] = useState(false); // State to manage login visibility
   
 

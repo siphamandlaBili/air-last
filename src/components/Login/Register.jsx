@@ -21,15 +21,15 @@ const Register = () => {
         e.preventDefault(); // Prevent the default form submission behavior
         setLoading(true);
         setError('');
-
+        
         try {
-            const response = await axios.post('http://localhost:5000/api/users/register', {
+            const response = await axios.post('https://airbnb-backend-1-ebkj.onrender.com/api/users/register', {
                 name,
                 email,
                 password,
             });
             cookies.set("loggedInUser", JSON.stringify(response.data.user), { path: "/" });
-            console.log(response.data.user)
+            
             // Navigate to the home page
             navigate('/login');
         } catch (error) {

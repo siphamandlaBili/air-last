@@ -9,8 +9,8 @@ import { useSearch } from '../../SearchContext';
 const SearchPage = () => {
     // Access the global state
     const { results } = useSearch();
-    console.log(Boolean(results));
-    
+    const data = useSearch();
+    console.log(results, data)
     return (
         <div className="searchPage">
             <NavbarSearch />

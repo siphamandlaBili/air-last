@@ -1,40 +1,54 @@
 import { useEffect, useState } from "react";
-import "./ReservationTable.css"
+import "./ReservationTable.css";
 import Cookies from 'universal-cookie';
 import axios from "axios";
-
-const reservations = [
-  { id: 1, name: "Johann Coetzee", property: "Property 1", checkin: "19/06/2024", checkout: "24/06/2024" },
-  { id: 2, name: "Asif Hassam", property: "Property 2", checkin: "19/06/2024", checkout: "19/06/2024" },
-  { id: 3, name: "Kago Kola", property: "Property 1", checkin: "25/06/2024", checkout: "30/06/2024" },
-];
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ReservationsTable = () => {
   const cookies = new Cookies();
-  const loggedInUser = cookies.get('loggedInUser')
-  const [reservations, setResevations] = useState([]);
-  const fetchData = async (id) => {
+  const loggedInUser = cookies.get('loggedInUser');
+  const [reservations, setReservations] = useState([]);
+
+  const fetchData = async () => {
     try {
-      const data = await axios.get(`http://localhost:5000/api/reservations/host`, {
+      const response = await axios.get(`https://airbnb-backend-1-ebkj.onrender.com/api/reservations/host`, {
         headers: {
           Authorization: `Bearer ${loggedInUser.token}`,
           'Content-Type': 'application/json',
         }
       });
 
-      setResevations(data.data)
+      setReservations(response.data);
     } catch (error) {
-      console.log(error)
+      console.error('Error fetching reservations:', error);
     }
-  }
-  useEffect(() => {
-    fetchData()
-  }, [])
+  };
 
+  useEffect(() => {
+    if (loggedInUser) {
+      fetchData();
+    }
+  }, [loggedInUser]);
+
+  const deleteReserve = async (id) => {
+    try {
+      await axios.delete(`https://airbnb-backend-1-ebkj.onrender.com/api/reservations/${id}`, {
+        headers: {
+          Authorization: `Bearer ${loggedInUser.token}`,
+        }
+      });
+      setReservations(reservations.filter(reservation => reservation._id !== id));
+      toast.success('Reservation deleted successfully');
+    } catch (error) {
+      console.error('Error deleting reservation:', error);
+      toast.error('Failed to delete reservation');
+    }
+  };
 
   return (
     <>
-
+      <ToastContainer />
       <div className="reservations-table">
         <h2>My Reservations</h2>
         <div className="table-container">
@@ -43,34 +57,36 @@ const ReservationsTable = () => {
               <tr>
                 <th>Booked by</th>
                 <th>Property</th>
-                <th>Checkin</th>
-                <th>Checkout</th>
+                <th>Check in</th>
+                <th>Check out</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {reservations?.map((reservation, i) => {
-                console.log(reservation)
-                const { checkInDate, checkOutDate, createdAt, guests, totalPrice, updatedAt, user } = reservation;
-
-                console.log(loggedInUser.user.id)
-                if (reservation.user == loggedInUser.user.id) {
-                  return <tr key={i}>
-                    <td>{reservation?.user}</td>
-                    <td>{reservation?.accommodation?.name}</td>
-                    <td>{checkInDate}</td>
-                    <td>{checkOutDate}</td>
-                    <td>
-                      <button className="delete-button">Delete</button>
-                    </td>
-                  </tr>
+                const { checkInDate, checkOutDate } = reservation;
+                
+                if (reservation.accommodation.createdBy === loggedInUser.user.id) {
+                  return (
+                    <tr key={i}>
+                      <td>{reservation?.guests}</td>
+                      <td>{reservation?.accommodation?.name}</td>
+                      <td>{checkInDate.split("T")[0]}</td>
+                      <td>{checkOutDate.split("T")[0]}</td>
+                      <td>
+                        <button className="delete-button" onClick={() => deleteReserve(reservation._id)}>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
                 }
+                return null;
               })}
             </tbody>
           </table>
         </div>
       </div>
-
     </>
   );
 };

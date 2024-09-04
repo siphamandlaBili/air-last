@@ -48,7 +48,7 @@ const CreateListing = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:5000/api/accommodations', formData, {
+            const response = await axios.post('https://airbnb-backend-1-ebkj.onrender.com/api/accommodations', formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json'

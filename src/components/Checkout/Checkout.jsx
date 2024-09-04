@@ -15,9 +15,6 @@ const Checkout = () => {
     const navigate = useNavigate();
     
     // get user
-    const loggedInUser = cookies.get('loggedInUser')?.user;
-    console.log(loggedInUser)
-    console.log(loggedInUser)
         useEffect(() => {
             // Check if 'loggedInUser' is an object
             setTimeout(()=>{

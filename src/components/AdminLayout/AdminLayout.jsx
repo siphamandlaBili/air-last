@@ -15,7 +15,6 @@ function AdminLayout() {
   const cookies = new Cookies();
   const loggedInUser = cookies.get('loggedInUser')?.user;
   
-  console.log(loggedInUser)
   useEffect(() => {
     // Check if 'loggedInUser' is an object
     setTimeout(()=>{
@@ -37,7 +36,7 @@ if(typeof loggedInUser !== 'object' && loggedInUser !== null){
         alignItems: 'center', 
         height: '100vh', 
         flexDirection: 'column', 
-        color: '#FF5A5F',  // Airbnb's primary red color
+        color: '#FF5A5F', 
         textAlign: 'center'
       }}>
         <img style={{ 

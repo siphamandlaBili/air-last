@@ -22,13 +22,12 @@ const Login = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:5000/api/users/login', {
+            const response = await axios.post('https://airbnb-backend-1-ebkj.onrender.com/api/users/login', {
                 email,
                 password,
             });
-            console.log(response.data)
+            
             toast.success(`Welcome ${response.data.user.name}`);
-            console.log(response.data.user.name);
             cookies.set("loggedInUser", JSON.stringify(response.data), { path: "/" });
 
 
